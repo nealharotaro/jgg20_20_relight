@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
     [SerializeField] float health = 100f;
+    [SerializeField] float fuel = 100f;
     [SerializeField] GeneratorLight statusLight;
+    [SerializeField] MeshRenderer refuelLighting;
     [SerializeField] Light pointLight;
 
     public bool isActive = false;
@@ -21,6 +24,7 @@ public class Generator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FuelDepletion();
         //todo refactor later
         var currentLight = statusLight.GetComponent<MeshRenderer>();
         if (!isActive)
@@ -35,7 +39,32 @@ public class Generator : MonoBehaviour
         }
     }
 
-   
+    private void FuelDepletion()
+    {
+        if(fuel > 0)
+        {
+            isActive = true;
+        }
+        fuel -= 5f * Time.deltaTime;
+        if(fuel <= 0)
+        {
+            fuel = 0;
+            isActive = false;
+            refuelLighting.material = statusLight.inactiveLight;
+
+        }
+    }
+
+    public void SetFuel(float num)
+    {
+        fuel += num;
+        if(fuel >= 100f)
+        {
+            fuel = 100f;
+        }
+    }
+
+
 
 
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +11,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
     {
         [SerializeField] Generator myGenerator;
         [SerializeField] TextMesh myText;
+        [SerializeField] RectTransform goalMeter;
+        [SerializeField] MeterSystem meter;
         // Start is called before the first frame update
         void Start()
         {
@@ -44,9 +45,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 UnpauseMovement(other);
+                if (meter.gameObject)
+                {
+                    meter.gameObject.SetActive(false);
+                }
+                
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !other.GetComponent<FirstPersonController>().isPaused)
             {
                 PauseMovement(other);
                 if (gameObject.name == "Refuel")
@@ -87,6 +93,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Refuel()
         {
             Debug.Log("Start Refuel Mini Game");
+
+            meter.targetPercent = Random.Range(0, 100f) / 100f;
+            RandomizeGoalMeter();
+            meter.gameObject.SetActive(true);
+            meter.StartArrow();
             myText.gameObject.SetActive(false);
 
         }
@@ -101,6 +112,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             Debug.Log("Start Sequence Mini Game");
             myText.gameObject.SetActive(false);
+        }
+
+
+        private void RandomizeGoalMeter()
+        {
+            goalMeter.rotation = Quaternion.Euler(0, 0,meter.targetPercent * 360);
         }
 
     }
