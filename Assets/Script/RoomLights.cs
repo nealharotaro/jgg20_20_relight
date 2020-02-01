@@ -5,24 +5,29 @@ using UnityEngine;
 public class RoomLights : MonoBehaviour
 {
     [SerializeField] Generator myGenerator;
-    [SerializeField] Light myWallLight;
+    [SerializeField] List<GameObject> myWallLights;
     // Start is called before the first frame update
     void Start()
     {
-        myWallLight = GetComponentInChildren<Light>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!myGenerator.isActive)
+        foreach(GameObject wallLight in myWallLights)
         {
-            myWallLight.intensity = 0;
+            var myLights = wallLight.GetComponentInChildren<Light>();
+            if (!myGenerator.isActive)
+            {
+                myLights.intensity = 0;
+            }
+            else
+            {
+                myLights.intensity = 1;
+            }
         }
-        else
-        {
-            myWallLight.intensity = 1;
-        }
+
     }
 
 
