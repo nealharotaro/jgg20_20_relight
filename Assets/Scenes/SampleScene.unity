@@ -4708,12 +4708,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 784623912, guid: fb8b4d24b9b024ffc8a71aa20e39bd59, type: 3}
       propertyPath: fuel
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 784623912, guid: fb8b4d24b9b024ffc8a71aa20e39bd59, type: 3}
       propertyPath: refuelLighting
       value: 
       objectReference: {fileID: 1147757212}
+    - target: {fileID: 784623912, guid: fb8b4d24b9b024ffc8a71aa20e39bd59, type: 3}
+      propertyPath: health
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1147757214, guid: fb8b4d24b9b024ffc8a71aa20e39bd59, type: 3}
       propertyPath: goalMeter
       value: 
