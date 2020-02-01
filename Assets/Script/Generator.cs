@@ -9,6 +9,7 @@ public class Generator : MonoBehaviour
     [SerializeField] float fuel = 100f;
     [SerializeField] GeneratorLight statusLight;
     [SerializeField] MeshRenderer refuelLighting;
+    [SerializeField] MeshRenderer circuitLighting;
     [SerializeField] Light pointLight;
 
     public bool isActive = false;
@@ -24,6 +25,11 @@ public class Generator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(health > 0 && fuel > 0)
+        {
+            isActive = true;
+        }
+        HealthDepletion();
         FuelDepletion();
         //todo refactor later
         var currentLight = statusLight.GetComponent<MeshRenderer>();
@@ -39,12 +45,21 @@ public class Generator : MonoBehaviour
         }
     }
 
+    private void HealthDepletion()
+    {
+        health -= 3f * Time.deltaTime;
+        if(health <= 0)
+        {
+            health = 0;
+            isActive = false;
+            circuitLighting.material = statusLight.inactiveLight;
+            
+        }
+    }
+
     private void FuelDepletion()
     {
-        if(fuel > 0)
-        {
-            isActive = true;
-        }
+
         fuel -= 5f * Time.deltaTime;
         if(fuel <= 0)
         {
