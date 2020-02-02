@@ -28,9 +28,9 @@ public class Sequencing : MonoBehaviour
     public void sequenceCheck()
     {
 
-        /* if (Input.GetKeyDown(UserInput) == sequence1[index])
+         if (Input.GetKeyDown(UserInput))
          {
-             index++;
+            char input = char(UserInput);
 
          }
          else
@@ -40,6 +40,7 @@ public class Sequencing : MonoBehaviour
          if (index == 3)
          {
              this.gameObject.SetActive(false);
-         }*/
+         }
     }
+    
 }

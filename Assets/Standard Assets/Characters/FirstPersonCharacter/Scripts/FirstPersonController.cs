@@ -64,6 +64,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             if (!isPaused)
             {
+                Cursor.visible = false;
                 RotateView();
                 // the jump state needs to read here to make sure it is not missed
                 if (!m_Jump)

@@ -63,6 +63,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
                 if (gameObject.name == "Circuit")
                 {
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
                     Circuit(CircuitPuzzle1);
                 }
                 if(gameObject.name == "Sequence")
@@ -109,6 +111,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             Debug.Log("Start Circuit Mini Game");
             puzzle.SetActive(true);
             myText.gameObject.SetActive(false);
+           
         }
 
         private void Sequence()
