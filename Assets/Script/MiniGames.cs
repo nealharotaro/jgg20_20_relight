@@ -13,6 +13,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] TextMesh myText;
         [SerializeField] RectTransform goalMeter;
         [SerializeField] MeterSystem meter;
+        public GameObject CircuitPuzzle1;
+   
         // Start is called before the first frame update
         void Start()
         {
@@ -61,7 +63,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
                 if (gameObject.name == "Circuit")
                 {
-                    Circuit();
+                    Circuit(CircuitPuzzle1);
                 }
                 if(gameObject.name == "Sequence")
                 {
@@ -102,9 +104,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         }
 
-        private void Circuit()
+        private void Circuit(GameObject puzzle)
         {
             Debug.Log("Start Circuit Mini Game");
+            puzzle.SetActive(true);
             myText.gameObject.SetActive(false);
         }
 
